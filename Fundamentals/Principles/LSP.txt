@@ -5,7 +5,7 @@ without LSP
 Bird class that has method fly 
 you make another dervied class sparrow from the class Bird , that impliments the function "fly"
 and you make another dervied class Pengin from the class bird that cannot fly , here it will throw error and 
-
+ here you arer restricting and narroeing down the capability of parent class
 
 clas Bird{
     public:

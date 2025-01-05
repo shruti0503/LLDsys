@@ -4,6 +4,18 @@
 
 3. Liskov substrituion principle: if class b is a subtype of a , then we should be able to replace object of A with B 
 without breaking the behaviour of the program.
+states that the code remanins reliable when using derived  (child) classes in place of their base (parent) classes.
+
+->It says that If class B is a subclass of class A, you should be able to replace A with B without breaking the functionality of the program.
+Subclasses should behave like their parent class without unexpected side effects.
+
+Imagine a bird and a penguin.
+
+A bird can generally fly.
+A penguin is also a bird but cannot fly.
+If you have a program that assumes all birds can fly (based on the parent class), introducing a penguin would break the program. Penguins don't satisfy the behavior expected from the bird class.
+
+
 
 imagine we have object code -> that accepts object of A ,  it should extend the capability of parent and not narrow it down
 Example:
@@ -19,4 +31,95 @@ bicyle impliment bike{
 
 }
 
-4. Interface segmented principle
+4. Interface segmented principle : Interfaces should be such , that client should not impliment unnecessary functions they do not need.
+
+interface ResturantEmp{
+    // func 1 washDishes
+    // func 2 serverCustomers
+    //funmc 3 cookFood
+
+}
+
+class water impliemnttes ResturantsEmployee{
+
+    void washDishes{
+        // impliments function ,  but waiter does not need these functions -> wash dishes
+    }
+    // he only needs to server custormers
+
+}
+
+correct way would be to  make separate interface for waiter cook , that needs separte functuiins
+
+5. Dependency inversion principle: class should depend on interface rather than concrete classes
+Highe level modules(like main app logic) should not depend on low level modules(like database or file handling).
+//The switch doesn't care what kind of bulb (LED, fluorescent, etc.) it's controlling, as long as it follows the "LightSource" interface.
+
+Example 1
+
+without DIP
+class Bulb{
+    public:
+    void turnOn(){
+        cout<<"bulb is turned on!"<<endl;
+    }
+}
+
+class Switch{
+    Bulb* bulb
+    public:
+    Switch(Bulb* b): bulb(b){
+         
+    }
+    void flip(){
+        bulb-turnOn();
+    }
+}  the Switch directly depends on the Bulb class. If you want to use a different type of light, you'd have to rewrite the Switch class.
+
+
+With DIP
+->Make sepearte class lightsource that contains virtual functions "turnOn" and a destructor .
+->class Blub  is made from  class lightsource extending its functionalities and impliments the turnOn function here 
+->the switch class makes the object light from the class lightsource and its constructor takes the light object as input and initlaise the light
+
+class LightSource{
+    public:
+    virtual void turnOn()=0;
+    virtual ~LightSource(){};
+};
+
+class Bulb: public LightSource{
+    public: 
+    void turnOn() override{
+        cout<<"bulb is turned on!"<<endl;
+    }
+};
+
+class Switch{
+    lightsource* light;
+    Switch(lightsource* l): light(l){ }
+    void flip(){
+        light->turnOn();
+    }
+}
+
+// now here switch depends only on the LightSource abstraction, not on specific details like the Bulb, You can replace Blub with without changing the switch.
+
+
+keybaord interface -> wired , bluetooth
+mouse interface -> wired , bluetooth
+
+class Macbook{
+    WiredKeyboard keybaord;
+    WiredMouse mouse ;
+    public MacBook(){
+        keybaord= new WiredKeyboard();
+        mouse= new WiredMouse();
+    }
+    // this is not folloewing 5.
+}
+
+
+
+
+

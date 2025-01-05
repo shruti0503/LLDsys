@@ -1,0 +1,105 @@
+// bird and penguin Example
+
+without LSP
+
+Bird class that has method fly 
+you make another dervied class sparrow from the class Bird , that impliments the function "fly"
+and you make another dervied class Pengin from the class bird that cannot fly , here it will throw error and 
+ here you arer restricting and narroeing down the capability of parent class
+
+clas Bird{
+    public:
+    void fly(){
+        cout<<"this bird can fly"<<endl;
+    }
+}
+
+class Sparrow: pubic Bird{
+    pubic:
+    void fly() override{
+        cout<<"i am  a sparrow andi can fly<<endl;
+    }
+}
+
+class Pengin: pubic Bird{
+    void fly() override {
+        throw runtime_error("I cannot fly!");
+    }
+}
+
+void makeBirdFly(Bird* bird){
+    bird->fly();
+}
+
+int main(){
+    Bird* sparrow= new Sparrow();
+    Bird* penguin= new Pengin(); 
+
+    makeBirdFly(sparrow); // gives output 
+    makeBirdFly(penguin); // throws error
+
+}
+
+
+with LSP
+
+Make a class bird do not impliment the method in this itself , make a general method (virtual function) that 
+is later implimented in the derived classes.
+
+In the class FlyingBird that extends from the class Bird make a virtual function here "fly" 
+In the class NonFlyingBird that extends from the class Bird-> virtaual func -> walk
+class->  Sparrow that is dervied from -> FlyingBird -> impliments fly() override
+class->Pengin -> derived from -> NonFlyingBird -> impliments fly() override
+
+
+class Bird(){
+
+    void virtaual move();
+    virtaual ~Bird(){};
+
+};
+
+class FlyingBird: public Bird{
+
+    virtual void Fly()=0;
+    void move() override{
+       Fly();
+    }
+
+};
+
+class Sparrow: pubic FlyingBird{
+    void fly() override{
+        cout<<" i can fly ehehe"<<endl;
+    }
+
+}
+
+class NonFlyingBird: Bird{
+    void virtual Walk()=0;
+    void move() override{
+       Walk();
+    }
+
+}
+
+class Pengin: pubic NonFlyingBird{
+    void walk() override{
+        cout<<"I am penguin and i walk , huh !"<<endl;
+    }
+
+}
+separate flying birds and non-flying birds into their respective hierarchies. 
+Penguin behaves correctly without pretending to have abilities it doesn't have.
+
+
+Real-Life Use Case:
+Payment Systems:
+
+A CreditCard and PayPal class should both behave like their parent PaymentMethod class,
+without introducing unexpected behavior (e.g., a BitcoinPayment subclass that suddenly asks for unrelated setup).
+Shapes Example:
+
+A Rectangle class has width and height.
+A Square is a subclass but can violate LSP because changing one dimension of a square must also change the other. 
+This is better solved by avoiding inheritance here.

@@ -1,0 +1,17 @@
+principles for oops -> managing scaleable code 
+
+-> has a retionship sign
+-|> is a relationship
+
+Inheritance
+
+vehicle base class -> drive method
+childs -> passesnger vehicle
+-> sporty -> method1
+-> offRoad -> method1
+
+method1 repeating 
+methods repeating not allowed in the slibling classes , child mai common h , toh code reuseable nhi h 
+duplicacy growing 
+
+

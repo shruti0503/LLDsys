@@ -2,4 +2,21 @@
 
 2. open/closed principle: open for extension but closed for modification
 
-3. 
+3. Liskov substrituion principle: if class b is a subtype of a , then we should be able to replace object of A with B 
+without breaking the behaviour of the program.
+
+imagine we have object code -> that accepts object of A ,  it should extend the capability of parent and not narrow it down
+Example:
+interface bike -> turn on engine and acceplate 
+
+motorcycle impliments bike {
+     // this will turn on engine
+}
+
+bicyle impliment bike{
+    // this has no enegine  , throw exception
+    // so its narroeing down the capability
+
+}
+
+4. Interface segmented principle

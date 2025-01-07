@@ -15,3 +15,27 @@ methods repeating not allowed in the slibling classes , child mai common h , toh
 duplicacy growing 
 
 
+# Strategy design pattern 
+-> used when we want to define a family of algorithms or behaviours and make them interchnagle.
+this pattern aloows the behavior of a class to be changed at runtime by using different Strategies without
+altering the code of the class itself.
+
+EXAMPLE
+Imagine you're playing a game, and your character can move in different ways: by walking, running, or swimming. You can switch between these behaviors dynamically depending on where your character is.
+
+Context: The character in the game.
+Strategies: Walking, Running, Swimming.
+
+
+
+exmaple- payment System
+class PaymentStrategy that contains a virtual function "pay" .
+class CreditCardPayment made from -> PaymentStrategy that impliments the pay function override
+class PayPalPayment from -> PaymentStrategy impliments Pay function and similarly
+class CryptoPayment 
+class PaymentContext : a context class for identifying the type 
+
+class PaymentStrategy{
+    pubic:
+    vir
+}

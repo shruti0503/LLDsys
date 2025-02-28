@@ -16,8 +16,7 @@ A penguin is also a bird but cannot fly.
 If you have a program that assumes all birds can fly (based on the parent class), introducing a penguin would break the program. Penguins don't satisfy the behavior expected from the bird class.
 
 
-
-imagine we have object code -> that accepts object of A ,  it should extend the capability of parent and not narrow it down
+Suppose we have object code -> that accepts object of A ,  it should extend the capability of parent and not narrow it down
 Example:
 interface bike -> turn on engine and acceplate 
 
@@ -26,7 +25,7 @@ motorcycle impliments bike {
 }
 
 bicyle impliment bike{
-    // this has no enegine  , throw exception
+    // this has no engine  , throw exception
     // so its narroeing down the capability
 
 }
